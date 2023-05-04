@@ -17,9 +17,9 @@ class NotifyEmail extends Mailable
    * Create a new message instance.
    */
   public $details; //array
-  public function __construct($data)
+  public function __construct()
   {
-    $this->details = $data;
+    // $this->details = $data;
   }
 
   /**

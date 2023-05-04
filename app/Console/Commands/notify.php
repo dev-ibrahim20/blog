@@ -30,9 +30,9 @@ class notify extends Command
   {
     // $users = User::select('email')->get();
     $email = User::pluck('email')->toArray();
-    $data = ['title' => 'Programming', 'body' => 'php'];
+    // $data = ['title' => 'Programming', 'body' => 'php'];
     foreach ($email as $em) {
-      Mail::to($em)->send(new NotifyEmail($data));
+      Mail::To($em)->send(new NotifyEmail());
     }
   }
 }
