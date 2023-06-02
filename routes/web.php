@@ -2,10 +2,12 @@
 
 use App\Http\Controllers;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\CurdController;
 use App\Http\Controllers\Front\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SocialController;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Symfony\Component\Routing\Route as RoutingRoute;
 
 /*
@@ -30,4 +32,12 @@ Route::namespace('Controllers')->group(function () {
 
 Route::get('/redirect/{service}', [SocialController::class, 'redirect']);
 Route::get('/callback/{service}', [SocialController::class, 'callback']);
- 
+
+Route::group(['prefix' => 'offers'], function () {
+
+  Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
+    Route::get('create', [CurdController::class, 'create']);
+  });
+
+  Route::post('store', [CurdController::class, 'store']);
+});
