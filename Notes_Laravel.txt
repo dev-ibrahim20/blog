@@ -1,0 +1,64 @@
+--- Laravel Important Notes ----
+
+- composer.json Is important file in project
+- php -version -> php بيعرف اصدار ال -> cmd
+- git => Github - IDM => Visual Studio Code - composer
+- composer :
+	1- composer install first step or composer update
+	2- composer create-project --prefer-dist laravel/laravel (project Name)	-> to insall project
+- .gitignore -> بيبقا فية اسماء الملفات ال مش عايزها تترفع معايا مثلا على github
+- php artisan serve -> run project about (localhost:8080)
+- type of Route :-
+	1- get  	most use
+	2- post 	most use
+	3- put	most use
+	4- patch
+	5- delete
+	6- options
+- Route parameters -> required Params should bath params ('/test/{id}', function($id){});
+- Route Name ->  ('/test/{id}', function($id){})-> name('name test'); تعريف الرابط باسم مختصر
+- (app->Providers->RouteServiceProvider.php) -->  routs لاضافة ملف جديد ف
+- namespace -> all route only access controller or methods in folder name (namespace)
+	Route::namespace('Test')->group(function(){
+		Route::get('users','UserController@showAdminName');
+	});
+- prefix ->  	Route::prefix('Test')->group(function(){
+				Route::get('users','UserController@showAdminName');
+				Route::post('users','UserController@showAdminName');
+				Route::delete('users','UserController@showAdminName');
+			});
+- group -> Route::group(['prefix' => 'users', 'middleware' => 'auth', 'namespace' => 'test'],fucntion(){});
+- middleware -> Route::get('check', function(){})->middleware('');
+- Way to Controller :- app->Http->controller
+- How to make New Controller:- php artisan make:controller (NameController)->start UbberCase
+- middleware('')->except(''); لو مش عايز اعمل (ميدل وار) لفنكشن معينة
+- resource ->  php artisan make:controller (NameController) --resource
+	Route::recource('test', 'TestController');
+- php artisan route:list
+- Views -> view('ViewName');
+- how to bath data to view -> 
+	1- with('NameData', value);
+	2- $data = [] -> بحط فيها البيانات بتاعتى -> $data['id'] = 5 -> view('ViewName', $data); -> {{$id}} // 5
+	3- $obj = new \stdClass(); -> view('ViewName', compact('obj')); -> {{$obj -> name او id}}
+- how to call Css && JavaScript Pass -> {{URL::asset('passCss')}}
+-  nmp run dev -> run Front form in laravel in auth login and register
+- Lang -> how to show worlds in lang file -> {{__('FlieName.ChooceWorld')}}
+	how to change lang in Your web -> (config->app.php-> 'local'=>'en'or'ar')
+- @extends('')-> 
+- @section('NameTest') @stop
+- @yield('') -> show inhertanc in view
+- @include('')
+- @if()
+- @elseif()
+- @else
+- @endif
+- @foreach() @endforeach
+- @forelse()
+- @empty
+- @endforealse
+- {{-- --}} -> comment in laraverl
+- composer require laravel/ui --dev -> install all views in laravel say login && register
+- npm => node pakge manager
+- npm install && npm run dev
+- php artisan ui vue --auth -> install view && method (login-register) 
+- php artisan migrate -> uploade database in laravel
