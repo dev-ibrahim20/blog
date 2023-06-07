@@ -22,7 +22,7 @@ use Symfony\Component\Routing\Route as RoutingRoute;
 */
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 Route::namespace('Controllers')->group(function () {
   Route::get('/', function () {
     return view('welcome');
