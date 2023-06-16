@@ -32,12 +32,11 @@ Route::namespace('Controllers')->group(function () {
 
 Route::get('/redirect/{service}', [SocialController::class, 'redirect']);
 Route::get('/callback/{service}', [SocialController::class, 'callback']);
-
-Route::group(['prefix' => 'offers'], function () {
-
-  Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
+Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
+  Route::group(['prefix' => 'offers'], function () {
+    Route::get('get', [CurdController::class, 'getOffers']);
     Route::get('create', [CurdController::class, 'create']);
   });
-
   Route::post('store', [CurdController::class, 'store']);
+  Route::get('myVideo', [CurdController::class, 'getVideo']);
 });

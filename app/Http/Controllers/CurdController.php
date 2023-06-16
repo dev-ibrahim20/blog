@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\VideoViewer;
+use App\Models\Video;
 use App\Models\Offer;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -10,7 +12,7 @@ class CurdController extends Controller
 {
   public function getOffers()
   {
-    return Offer::select('id', 'name')->get();
+    return Offer::select('id', 'name', 'price')->get();
   }
 
   public function create()
@@ -36,5 +38,13 @@ class CurdController extends Controller
       'photo' => $request->photo,
     ]);
     return 'Saved successfuly';
+  }
+
+  public function getVideo()
+  {
+
+    $video = Video::first();
+    event(new VideoViewer($video)); // fire event
+    return view('video')->with('video', $video);
   }
 }
