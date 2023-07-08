@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\CurdController;
 use App\Http\Controllers\Front\UserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OfferController;
 use App\Http\Controllers\SocialController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -39,4 +40,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
   });
   Route::post('store', [CurdController::class, 'store']);
   Route::get('myVideo', [CurdController::class, 'getVideo']);
+});
+
+
+Route::group(['prefix' => 'ajax-offers'], function () {
+  Route::get('create', [OfferController::class, 'create']);
 });
