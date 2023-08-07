@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\CurdController;
@@ -24,12 +25,12 @@ use Symfony\Component\Routing\Route as RoutingRoute;
 
 
 Auth::routes(['verify' => true]);
-Route::namespace('Controllers')->group(function () {
-  Route::get('/', function () {
-    return view('welcome');
-  });
-  Route::get('/home', [HomeController::class, 'index'])->name('home');
-});
+// Route::namespace('Controllers')->group(function () {
+// Route::get('/', function () {
+//   return view('welcome');
+// });
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+// });
 
 Route::get('/redirect/{service}', [SocialController::class, 'redirect']);
 Route::get('/callback/{service}', [SocialController::class, 'callback']);
@@ -46,3 +47,5 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 Route::group(['prefix' => 'ajax-offers'], function () {
   Route::get('create', [OfferController::class, 'create']);
 });
+
+Route::get('/form', [CurdController::class, 'formSend']);

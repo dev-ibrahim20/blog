@@ -13,6 +13,7 @@ use Illuminate\Queue\SerializesModels;
 
 class VideoViewer
 {
+
   use Dispatchable, InteractsWithSockets, SerializesModels;
 
   /**
@@ -22,6 +23,7 @@ class VideoViewer
   public function __construct(Video $video)
   {
     $this->video = $video;
+    dd($video);
   }
 
   /**

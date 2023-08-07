@@ -47,4 +47,15 @@ class CurdController extends Controller
     event(new VideoViewer($video)); // fire event
     return view('video')->with('video', $video);
   }
+
+
+
+  // Form Mail Send
+
+  public function formSend()
+  {
+    return view('');
+  }
+
+
 }
